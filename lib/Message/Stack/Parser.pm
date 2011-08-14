@@ -1,18 +1,36 @@
 package Message::Stack::Parser;
 use Moose::Role;
 
+# ABSTRACT: A simple role for creating a Message::Stack from things
+
 our $VERSION = '0.03';
 
+
 requires 'parse';
+
+
+1;
+
+__END__
+=pod
 
 =head1 NAME
 
 Message::Stack::Parser - A simple role for creating a Message::Stack from things
 
+=head1 VERSION
+
+version 0.04
+
 =head1 SYNOPSIS
 
   use Message::Stack::Parser::DataVerifier;
 
+  my $dv = Data::Verifier->new;
+
+  my $dv_results = $dv->verify;
+
+  my $scope = 'login';
   # Pass a Data::Verifier::Results object to parse.
   my $ms = Message::Stack::Parser::DataVerifier->new->parse(
     Message::Stack->new,
@@ -43,19 +61,14 @@ could be anything.
 
 =head1 AUTHOR
 
-Cory G Watson, C<< <gphat at cpan.org> >>
+Cory G Watson <gphat@cpan.org>
 
-=head1 COPYRIGHT & LICENSE
+=head1 COPYRIGHT AND LICENSE
 
-Copyright 2010 Cory G Watson.
+This software is copyright (c) 2011 by Cold Hard Code, LLC.
 
-This program is free software; you can redistribute it and/or modify it
-under the terms of either: the GNU General Public License as published
-by the Free Software Foundation; or the Artistic License.
-
-See http://dev.perl.org/licenses/ for more information.
-
+This is free software; you can redistribute it and/or modify it under
+the same terms as the Perl 5 programming language system itself.
 
 =cut
 
-1;

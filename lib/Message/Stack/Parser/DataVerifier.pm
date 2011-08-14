@@ -1,17 +1,61 @@
 package Message::Stack::Parser::DataVerifier;
+BEGIN {
+  $Message::Stack::Parser::DataVerifier::VERSION = '0.04';
+}
 use Moose;
+
+# ABSTRACT: Add messages to a Message::Stack from a Data::Verifier results
 
 with 'Message::Stack::Parser';
 
 use Message::Stack::Message;
 
+
+sub parse {
+    my ($self, $stack, $scope, $results) = @_;
+
+    foreach my $f ($results->missings) {
+        $stack->add(Message::Stack::Message->new(
+            msgid   => "missing_$f",
+            scope   => $scope,
+            subject => $f,
+            level   => 'error'
+        ));
+    }
+
+    foreach my $f ($results->invalids) {
+        $stack->add(Message::Stack::Message->new(
+            msgid   => "invalid_$f",
+            scope   => $scope,
+            subject => $f,
+            level   => 'error',
+            params  => [ $results->get_original_value($f), $results->get_field($f)->reason ],
+        ));
+    }
+}
+
+1;
+
+__END__
+=pod
+
 =head1 NAME
 
 Message::Stack::Parser::DataVerifier - Add messages to a Message::Stack from a Data::Verifier results
 
+=head1 VERSION
+
+version 0.04
+
 =head1 SYNOPSIS
 
   use Message::Stack::Parser::DataVerifier;
+
+  my $dv = Data::Verifier->new;
+
+  my $dv_results = $dv->verify;
+
+  my $scope = 'login';
 
   # Pass a Data::Verifier::Results object to parse.
   my $ms = Message::Stack::Parser::DataVerifier->new->parse(
@@ -24,6 +68,8 @@ Message::Stack::Parser::DataVerifier - Add messages to a Message::Stack from a D
 
 This class will add a message to the provided L<Message::Stack> for every
 missing or invalid field in a L<Data::Verifier::Result>.
+
+=head1 MAPPING
 
 The fields are mapped from Data::Verifier into a Message in the following way:
 
@@ -64,45 +110,16 @@ The fields are mapped from Data::Verifier into a Message in the following way:
 Adds messages from the provided C<$results> to the provided C<$stack> under
 the C<$scope> that is passed in.
 
-=cut
-
-sub parse {
-    my ($self, $stack, $scope, $results) = @_;
-
-    foreach my $f ($results->missings) {
-        $stack->add(Message::Stack::Message->new(
-            msgid   => "missing_$f",
-            scope   => $scope,
-            subject => $f,
-            level   => 'error'
-        ));
-    }
-
-    foreach my $f ($results->invalids) {
-        $stack->add(Message::Stack::Message->new(
-            msgid   => "invalid_$f",
-            scope   => $scope,
-            subject => $f,
-            level   => 'error',
-            params  => [ $results->get_original_value($f), $results->get_field($f)->reason ],
-        ));
-    }
-}
-
 =head1 AUTHOR
 
-Cory G Watson, C<< <gphat at cpan.org> >>
+Cory G Watson <gphat@cpan.org>
 
-=head1 COPYRIGHT & LICENSE
+=head1 COPYRIGHT AND LICENSE
 
-Copyright 2010 Cory G Watson.
+This software is copyright (c) 2011 by Cold Hard Code, LLC.
 
-This program is free software; you can redistribute it and/or modify it
-under the terms of either: the GNU General Public License as published
-by the Free Software Foundation; or the Artistic License.
-
-See http://dev.perl.org/licenses/ for more information.
+This is free software; you can redistribute it and/or modify it under
+the same terms as the Perl 5 programming language system itself.
 
 =cut
 
-1;

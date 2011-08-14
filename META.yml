@@ -1,28 +1,23 @@
 ---
 abstract: 'A simple role for creating a Message::Stack from things'
 author:
-  - 'Cory G Watson, C<< <gphat at cpan.org> >>'
   - 'Cory G Watson <gphat@cpan.org>'
 build_requires:
-  ExtUtils::MakeMaker: 6.42
   Test::More: 0
 configure_requires:
-  ExtUtils::MakeMaker: 6.42
-distribution_type: module
-generated_by: 'Module::Install version 1.01'
+  ExtUtils::MakeMaker: 6.30
+dynamic_config: 0
+generated_by: 'Dist::Zilla version 4.200007, CPAN::Meta::Converter version 2.110440'
 license: perl
 meta-spec:
   url: http://module-build.sourceforge.net/META-spec-v1.4.html
   version: 1.4
 name: Message-Stack-Parser
-no_index:
-  directory:
-    - inc
-    - t
-recommends:
-  Data::Verifier: 0
 requires:
-  Message::Stack: 0
+  Message::Stack::Message: 0
+  Moose: 0
+  Moose::Role: 0
 resources:
-  license: http://dev.perl.org/licenses/
-version: 0.03
+  homepage: http://github.com/gphat/message-stack-parser
+  repository: http://github.com/gphat/message-stack-parser
+version: 0.04
