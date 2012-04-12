@@ -1,13 +1,13 @@
 package Message::Stack::FormValidator;
-BEGIN {
-  $Message::Stack::FormValidator::VERSION = '0.04';
+{
+  $Message::Stack::FormValidator::VERSION = '0.05';
 }
 use Moose;
 
 use Message::Stack::Message;
 
 sub parse {
-    my ($self, $stack, $scope, $results) = @_;
+    my ($stack, $scope, $results) = @_;
 
     if($results->success) {
         return 1;
@@ -45,7 +45,7 @@ Message::Stack::FormValidator
 
 =head1 VERSION
 
-version 0.04
+version 0.05
 
 =head1 AUTHOR
 
@@ -53,7 +53,7 @@ Cory G Watson <gphat@cpan.org>
 
 =head1 COPYRIGHT AND LICENSE
 
-This software is copyright (c) 2011 by Cold Hard Code, LLC.
+This software is copyright (c) 2012 by Cold Hard Code, LLC.
 
 This is free software; you can redistribute it and/or modify it under
 the same terms as the Perl 5 programming language system itself.

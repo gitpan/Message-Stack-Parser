@@ -9,26 +9,26 @@ use ExtUtils::MakeMaker 6.30;
 
 
 my %WriteMakefileArgs = (
-  'ABSTRACT' => 'A simple role for creating a Message::Stack from things',
-  'AUTHOR' => 'Cory G Watson <gphat@cpan.org>',
-  'BUILD_REQUIRES' => {
-    'Test::More' => '0'
+  "ABSTRACT" => "A simple role for creating a Message::Stack from things",
+  "AUTHOR" => "Cory G Watson <gphat\@cpan.org>",
+  "BUILD_REQUIRES" => {
+    "Test::More" => 0
   },
-  'CONFIGURE_REQUIRES' => {
-    'ExtUtils::MakeMaker' => '6.30'
+  "CONFIGURE_REQUIRES" => {
+    "ExtUtils::MakeMaker" => "6.30"
   },
-  'DISTNAME' => 'Message-Stack-Parser',
-  'EXE_FILES' => [],
-  'LICENSE' => 'perl',
-  'NAME' => 'Message::Stack::Parser',
-  'PREREQ_PM' => {
-    'Message::Stack::Message' => '0',
-    'Moose' => '0',
-    'Moose::Role' => '0'
+  "DISTNAME" => "Message-Stack-Parser",
+  "EXE_FILES" => [],
+  "LICENSE" => "perl",
+  "NAME" => "Message::Stack::Parser",
+  "PREREQ_PM" => {
+    "Message::Stack::Message" => 0,
+    "Moose" => 0,
+    "Moose::Role" => 0
   },
-  'VERSION' => '0.04',
-  'test' => {
-    'TESTS' => 't/*.t'
+  "VERSION" => "0.05",
+  "test" => {
+    "TESTS" => "t/*.t"
   }
 );
 

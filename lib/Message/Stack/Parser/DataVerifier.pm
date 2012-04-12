@@ -1,6 +1,6 @@
 package Message::Stack::Parser::DataVerifier;
-BEGIN {
-  $Message::Stack::Parser::DataVerifier::VERSION = '0.04';
+{
+  $Message::Stack::Parser::DataVerifier::VERSION = '0.05';
 }
 use Moose;
 
@@ -12,7 +12,7 @@ use Message::Stack::Message;
 
 
 sub parse {
-    my ($self, $stack, $scope, $results) = @_;
+    my ($stack, $scope, $results) = @_;
 
     foreach my $f ($results->missings) {
         $stack->add(Message::Stack::Message->new(
@@ -32,6 +32,8 @@ sub parse {
             params  => [ $results->get_original_value($f), $results->get_field($f)->reason ],
         ));
     }
+
+    return $stack;
 }
 
 1;
@@ -45,7 +47,7 @@ Message::Stack::Parser::DataVerifier - Add messages to a Message::Stack from a D
 
 =head1 VERSION
 
-version 0.04
+version 0.05
 
 =head1 SYNOPSIS
 
@@ -58,11 +60,14 @@ version 0.04
   my $scope = 'login';
 
   # Pass a Data::Verifier::Results object to parse.
-  my $ms = Message::Stack::Parser::DataVerifier->new->parse(
-    Message::Stack->new,
+  my $ms = Message::Stack->new;
+  Message::Stack::Parser::DataVerifier::parse(
+    $ms,
     $scope,
     $dv_results
   );
+
+  # and now $ms has messages based on $dv_results
 
 =head1 DESCRIPTION
 
@@ -116,7 +121,7 @@ Cory G Watson <gphat@cpan.org>
 
 =head1 COPYRIGHT AND LICENSE
 
-This software is copyright (c) 2011 by Cold Hard Code, LLC.
+This software is copyright (c) 2012 by Cold Hard Code, LLC.
 
 This is free software; you can redistribute it and/or modify it under
 the same terms as the Perl 5 programming language system itself.
