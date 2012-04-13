@@ -1,6 +1,6 @@
 package Message::Stack::Parser::DataVerifier;
 {
-  $Message::Stack::Parser::DataVerifier::VERSION = '0.05';
+  $Message::Stack::Parser::DataVerifier::VERSION = '0.06';
 }
 use Moose;
 
@@ -47,7 +47,7 @@ Message::Stack::Parser::DataVerifier - Add messages to a Message::Stack from a D
 
 =head1 VERSION
 
-version 0.05
+version 0.06
 
 =head1 SYNOPSIS
 

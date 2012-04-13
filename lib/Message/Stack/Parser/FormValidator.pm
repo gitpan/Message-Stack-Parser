@@ -1,6 +1,6 @@
 package Message::Stack::FormValidator;
 {
-  $Message::Stack::FormValidator::VERSION = '0.05';
+  $Message::Stack::FormValidator::VERSION = '0.06';
 }
 use Moose;
 
@@ -45,7 +45,7 @@ Message::Stack::FormValidator
 
 =head1 VERSION
 
-version 0.05
+version 0.06
 
 =head1 AUTHOR
 

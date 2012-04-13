@@ -1,9 +1,10 @@
 package Message::Stack::Parser;
+{
+  $Message::Stack::Parser::VERSION = '0.06';
+}
 use Moose::Role;
 
 # ABSTRACT: A simple role for creating a Message::Stack from things
-
-our $VERSION = '0.03';
 
 
 requires 'parse';
@@ -20,7 +21,7 @@ Message::Stack::Parser - A simple role for creating a Message::Stack from things
 
 =head1 VERSION
 
-version 0.05
+version 0.06
 
 =head1 SYNOPSIS
 
